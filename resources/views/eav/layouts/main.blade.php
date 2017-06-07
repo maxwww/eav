@@ -17,6 +17,9 @@
     <!-- Custom CSS -->
     <link href="{{ URL::to('css/shop-homepage.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ URL::to('css/dd.css') }}" rel="stylesheet" media="screen">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,9 +52,11 @@
 
         <div class="col-md-9">
 
-            @include('eav.carousel')
+            @yield('carousel')
 
             <div class="row">
+
+                @include('eav.notifications')
 
                 @yield('content')
 

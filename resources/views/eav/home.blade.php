@@ -1,5 +1,9 @@
 @extends('eav.layouts.main')
 
+@section('carousel')
+    @include('eav.carousel')
+@stop
+
 @section('content')
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">

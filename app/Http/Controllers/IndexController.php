@@ -18,7 +18,7 @@ class IndexController extends Controller
 
         $current_category = 2;
 
-        return view('eav.test', compact([
+        return view('eav.home', compact([
             'categories',
             'current_category',
             'products'
