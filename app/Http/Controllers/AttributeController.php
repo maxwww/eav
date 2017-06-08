@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Param;
+use App\Attribute;
 //use Illuminate\Http\Request;
 use App\Category;
 use Request;
@@ -13,7 +13,7 @@ class AttributeController extends Controller
 {
     public function index()
     {
-        $attributes = Param::paginate(10);
+        $attributes = Attribute::paginate(10);
         $active = 'attributes';
 
         return view('eav.attributes.index', compact([
@@ -48,7 +48,7 @@ class AttributeController extends Controller
         $input = array_merge(Request::except('options', '_token'), compact('options'));
 
         $rules = [
-            'slug' => 'unique:params,slug',
+            'slug' => 'unique:attributes,slug',
             'name' => 'required',
             'type' => 'required|in:text,checkbox,select,radio,textarea',
         ];
@@ -60,7 +60,7 @@ class AttributeController extends Controller
             return redirect('attributes/create')->withErrors($validator)->withInput()->with('message_failed', 'Not Saved.');
         }
 
-        Param::create($input);
+        Attribute::create($input);
 
         return redirect('attributes')->with('message_success', 'Attribute Saved.');
     }
@@ -68,7 +68,7 @@ class AttributeController extends Controller
     public function show($id)
     {
 
-        $attribute = Param::find((int)$id);
+        $attribute = Attribute::find((int)$id);
 
         if (!$attribute) {
             return redirect('');
@@ -90,7 +90,7 @@ class AttributeController extends Controller
 
     public function destroy($id)
     {
-        $attribute = Param::find((int)$id);
+        $attribute = Attribute::find((int)$id);
 
         if (!$attribute) {
             return redirect('');
@@ -102,7 +102,7 @@ class AttributeController extends Controller
     public function edit($id)
     {
 
-        $attribute = Param::find((int)$id);
+        $attribute = Attribute::find((int)$id);
 
         if (!$attribute) {
             return redirect('');
@@ -153,7 +153,7 @@ class AttributeController extends Controller
         }
 
         try {
-            Param::where('id', (int)$id)
+            Attribute::where('id', (int)$id)
                 ->update($input);
         } catch (QueryException $exception) {
             return redirect()->back()->with('message_failed', 'Not Saved -> Slug is duplicated.')->withInput();
