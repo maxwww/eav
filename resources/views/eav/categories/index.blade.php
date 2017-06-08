@@ -11,20 +11,19 @@
     </div>
 @stop
 @section('content')
-
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="page-header">
-            <h1>Attributes</h1>
-            <p class="lead">Create attributes and assign them to any object!</p>
-            <p><a class="btn btn-lg btn-success" href="{{ URL::to('attributes/create') }}" role="button">Add
-                    Attribute</a></p>
+            <h1>Categories</h1>
+            <p class="lead">Create categories and assign them to any object!</p>
+            <p><a class="btn btn-lg btn-success" href="{{ URL::to('categories/create') }}" role="button">Add
+                    Category</a></p>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Attributes
+                        Categories
                     </div>
 
                     <div class="panel-body">
@@ -32,25 +31,25 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th data-sort="name" class="col-md-3">Attribute Slug</th>
+                                    <th data-sort="name" class="col-md-3">Category name</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($attributes as $attribute)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td>{{ $attribute->slug }}</td>
+                                        <td>{{ $category->name }}</td>
                                         <td>
                                             <div class="pull-right">
                                                 <a class="btn btn-primary tip"
-                                                   href="{{ URL::to('attributes/' . $attribute->id) }}" title="View"><i
+                                                   href="{{ URL::to('categories/' . $category->id) }}" title="View"><i
                                                             class="fa fa-eye"></i></a>
                                                 <a class="btn btn-primary tip"
-                                                   href="{{ URL::to('attributes/' . $attribute->id . '/edit') }}"
+                                                   href="{{ URL::to('categories/' . $category->id . '/edit') }}"
                                                    title="Edit"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-danger tip" data-toggle="modal"
                                                    data-target="modal-confirm"
-                                                   href="{{ URL::to('attributes/' . $attribute->id . '/delete') }}"
+                                                   href="{{ URL::to('categories/' . $category->id . '/delete') }}"
                                                    title="Delete"><i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
@@ -66,7 +65,7 @@
                 <!-- /.panel panel-default -->
             </div>
             <div class="col-lg-12">
-                {{ $attributes->render() }}
+                {{ $categories->render() }}
             </div>
         </div>
 
@@ -91,7 +90,6 @@
             </div>
         </div>
     </div>
-
 @stop
 
 @section('scripts')

@@ -1,5 +1,16 @@
 @extends('eav.layouts.main')
 
+@section('left')
+    <div>
+        <p class="lead">Make your choice</p>
+        <div class="list-group">
+            <a href="{{ URL::to('products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
+            <a href="{{ URL::to('categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
+            <a href="{{ URL::to('attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
+        </div>
+    </div>
+@stop
+
 @section('content')
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="page-header">
@@ -139,5 +150,6 @@
 @stop
 
 @section('scripts')
+    <script src="{{ URL::to('js/scripts.js') }}"></script>
     <script src="{{ URL::to('js/attributes.js') }}"></script>
 @stop

@@ -9,33 +9,25 @@ use Request;
 use Validator;
 use Illuminate\Database\QueryException;
 
-class AttributesController extends Controller
+class AttributeController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        $current_category = '';
-
-
         $attributes = Param::paginate(10);
+        $active = 'attributes';
 
         return view('eav.attributes.index', compact([
             'attributes',
-            'categories',
-            'current_category'
+            'active',
         ]));
     }
 
     public function create()
     {
-        $categories = Category::all();
-        $current_category = '';
-
-
+        $active = 'attributes';
         return view('eav.attributes.create', compact([
             'attributes',
-            'categories',
-            'current_category'
+            'active',
         ]));
     }
 
@@ -75,8 +67,6 @@ class AttributesController extends Controller
 
     public function show($id)
     {
-        $categories = Category::all();
-        $current_category = '';
 
         $attribute = Param::find((int)$id);
 
@@ -89,11 +79,12 @@ class AttributesController extends Controller
         if ($options) {
             $options = json_decode($attribute->options, true);
         }
+
+        $active = 'attributes';
         return view('eav.attributes.show', compact([
             'attribute',
-            'categories',
-            'current_category',
             'options',
+            'active',
         ]));
     }
 
@@ -110,8 +101,6 @@ class AttributesController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::all();
-        $current_category = '';
 
         $attribute = Param::find((int)$id);
 
@@ -124,11 +113,11 @@ class AttributesController extends Controller
             $options = json_decode($attribute->options, true);
         }
 
+        $active = 'attributes';
         return view('eav.attributes.edit', compact([
             'attribute',
-            'categories',
-            'current_category',
             'options',
+            'active',
         ]));
 
     }

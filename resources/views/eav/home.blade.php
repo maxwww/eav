@@ -1,5 +1,14 @@
 @extends('eav.layouts.main')
 
+
+@section('categoriesMenu')
+    @include('eav.categoriesMenu')
+@stop
+
+@section('cart')
+    @include('eav.cart')
+@stop
+
 @section('carousel')
     @include('eav.carousel')
 @stop

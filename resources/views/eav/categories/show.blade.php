@@ -14,15 +14,23 @@
 @section('content')
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="page-header">
-            <h1>{{ $attribute->name }}</h1>
+            <h1>{{ $category->name }}</h1>
         </div>
-        <p><strong>Slug: </strong> {{ $attribute->slug }}</p>
-        <p><strong>Type: </strong> {{ $attribute->type }}</p>
-        @if($options)
-            <p><strong>Options: </strong></p>
-            @foreach($options as $key => $value)
-                <p>{{ $key }} => {{ $value }}</p>
-            @endforeach
+        <p><strong>Description: </strong> {{ $category->description }}</p>
+        @if(count($attributes) > 0)
+            <p><strong>Attributes: </strong></p>
+            <table class="table">
+                <tr>
+                <th>Name</th>
+                <th>Type</th>
+                </tr>
+                @foreach($attributes as $attribute)
+                    <tr>
+                        <td><p>{{ $attribute->name }}</p></td>
+                        <td><p>{{ $attribute->type }}</p></td>
+                    </tr>
+                @endforeach
+            </table>
         @endif
 
         <div class="pull-right">
@@ -30,11 +38,11 @@
                href="{{ URL::previous() }}" title="Back"><i
                         class="fa fa-backward"></i></a>
             <a class="btn btn-primary tip"
-               href="{{ URL::to('attributes/' . $attribute->id . '/edit') }}"
+               href="{{ URL::to('categories/' . $category->id . '/edit') }}"
                title="Edit"><i class="fa fa-edit"></i></a>
             <a class="btn btn-danger tip" data-toggle="modal"
                data-target="modal-confirm"
-               href="{{ URL::to('attributes/' . $attribute->id . '/delete') }}"
+               href="{{ URL::to('categories/' . $category->id . '/delete') }}"
                title="Delete"><i class="fa fa-trash-o"></i></a>
         </div>
         <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="model-confirm-label"

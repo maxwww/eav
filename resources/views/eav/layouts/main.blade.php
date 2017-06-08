@@ -42,9 +42,9 @@
         <div class="col-md-3">
             <div class="row">
 
-                @include('eav.categoriesMenu')
-
-                @include('eav.cart')
+                @yield('left')
+                @yield('categoriesMenu')
+                @yield('cart')
 
 
             </div>

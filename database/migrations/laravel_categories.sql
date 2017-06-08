@@ -1,0 +1,2 @@
+INSERT INTO laravel.categories (name, description, attributes, created_at, updated_at) VALUES ('Phones', '', '[2]', '2017-06-08 18:04:19', '2017-06-08 18:04:19');
+INSERT INTO laravel.categories (name, description, attributes, created_at, updated_at) VALUES ('Tablets', '', '[]', '2017-06-08 18:09:28', '2017-06-08 18:09:28');
