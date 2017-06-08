@@ -24,12 +24,12 @@
             <div class="form-group">
                 <div class="col-xs-6">
                     <input type="text" name="name" class="form-control input-lg" placeholder="Name"
-                           value="{{ old('name') !== null ? old('name') : $attribute->name }}" required>
+                           value="{{ old('name') ? old('name') : $attribute->name }}" required>
                 </div>
 
                 <div class="col-xs-6">
                     <input type="text" name="slug" class="form-control input-lg" placeholder="Slug"
-                           value="{{ old('slug') !== null ? old('slug') : $attribute->slug }}" required>
+                           value="{{ old('slug') ? old('slug') : $attribute->slug }}" required>
                 </div>
             </div>
 

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Attribute;
 //use Illuminate\Http\Request;
 use App\Category;
-use Request;
-use Validator;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 
 class AttributeController extends Controller
@@ -25,10 +25,7 @@ class AttributeController extends Controller
     public function create()
     {
         $active = 'attributes';
-        return view('eav.attributes.create', compact([
-            'attributes',
-            'active',
-        ]));
+        return view('eav.attributes.create', compact(['active']));
     }
 
     public function store()

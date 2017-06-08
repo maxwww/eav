@@ -16,18 +16,26 @@
         <div class="page-header">
             <h1>{{ $category->name }}</h1>
         </div>
-        <p><strong>Description: </strong> {{ $category->description }}</p>
+        <p><strong>Description: </strong></p><p>{!! nl2br(htmlspecialchars($category->description)) !!}</p>
         @if(count($attributes) > 0)
             <p><strong>Attributes: </strong></p>
             <table class="table">
                 <tr>
                 <th>Name</th>
                 <th>Type</th>
+                <th>Options</th>
                 </tr>
                 @foreach($attributes as $attribute)
                     <tr>
                         <td><p>{{ $attribute->name }}</p></td>
                         <td><p>{{ $attribute->type }}</p></td>
+                        <td>
+                            <ul>
+                                @foreach(json_decode($attribute->options, true) as $option)
+                                    <li>{{ $option }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                     </tr>
                 @endforeach
             </table>
