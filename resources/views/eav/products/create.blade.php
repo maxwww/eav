@@ -45,12 +45,14 @@
 
             <div class="form-group">
                 <div class="col-xs-12">
-                    Image: <input type="file" name="img" class="form-control input-lg" value="{{old('img')}}">
+                    <label>Image:</label>
+                    <input type="file" name="img" class="form-control input-lg" value="{{old('img')}}">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-xs-4">
+                    <label>Status:</label>
                     <select name="status" class="form-control input-lg" required="">
                         <option value="1">Available</option>
                         <option value="0">Disable</option>
@@ -58,11 +60,13 @@
                 </div>
 
                 <div class="col-xs-4">
+                    <label>Quantity:</label>
                     <input type="text" name="quantity" class="form-control input-lg" placeholder="Quantity"
                            value="{{ old('quantity') }}" required>
                 </div>
 
                 <div class="col-xs-4">
+                    <label>Price:</label>
                     <input type="text" name="price" class="form-control input-lg" placeholder="Price"
                            value="{{ old('price') }}" required>
                 </div>

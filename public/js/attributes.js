@@ -57,6 +57,12 @@ jQuery(document).ready(function($) {
 
     });
 
+    $(document).on('change', '#image-input', function() {
+
+        $("#image-img").html("");
+
+    });
+
     $(document).on('click', '[data-option-remove]', function() {
 
         $(this).closest('tr').remove();
