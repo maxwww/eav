@@ -12,10 +12,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('categories', 'CategoryController');
     Route::get('categories/{id}/delete', 'CategoryController@destroy');
     Route::post('categories/{id}/update', 'CategoryController@update');
+    Route::post('categories/attributes/{id}', 'CategoryController@getAttributes');
 
     Route::resource('products', 'ProductController');
     Route::get('products/{id}/delete', 'ProductController@destroy');
     Route::post('products/{id}/update', 'ProductController@update');
 });
 
-Route::post('categories/attributes/{id}', 'CategoryController@getAttributes');

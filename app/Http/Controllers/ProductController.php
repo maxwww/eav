@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request as MRequest;
 use Illuminate\Support\Facades\Input;
+use Image;
+use File;
+use Illuminate\Database\QueryException;
 
 class ProductController extends Controller
 {
@@ -41,8 +44,8 @@ class ProductController extends Controller
         $params = [];
         $attributes = [];
 
+        if ($product->params != "" && $product->params != "[]") {
 
-        if ($product->params != null) {
             $params = json_decode($product->params, true);
             $attributes_in_category = json_decode($product->category->attributes, true);
             foreach ($params as $key => $value) {
@@ -81,13 +84,20 @@ class ProductController extends Controller
         $file = Request::file('img');
         $all = Request::all();
 
-        dd(json_encode($all['params'], true));
+        $params = '[]';
+        if (isset($all['params'])) {
+            $params = json_encode($all['params'], true);
+        }
 
-        $input = array_merge(Request::except('params', '_token'), compact('attributes'));
+
+        $input = array_merge(Request::except('params', '_token'), compact('params'));
 
         $rules = [
             'name' => 'required',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required',
+            'status' => 'required',
+            'price' => 'required|numeric',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
         $messages = [];
@@ -96,18 +106,42 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->with('message_failed', 'Not Saved.')->withInput()->withErrors($validator);
         }
+        if (isset($input['img'])) {
+            $image = Input::file('img');
+            $filename  = time() . '.' . $image->getClientOriginalExtension();
+
+            $path = public_path('images/' . $filename);
+
+
+            Image::make($image->getRealPath())->resize(320, 360)->save($path);
+            $input['img'] = $filename;
+        }
+
+
 
         try {
-            Category::where('id', (int)$id)
-                ->update($input);
+            Product::create($input);
         } catch (QueryException $exception) {
             return redirect()->back()->with('message_failed', 'Not Saved -> Please write to admin.')->withInput();
         }
 
+        return redirect('products')->with('message_success', 'Product Saved.');
 
-        return redirect()->back()->with('message_success', 'Category Saved.');
+    }
 
+    public function destroy($id)
+    {
+        $product = Product::find((int)$id);
 
-        dd(25);
+        if (!$product) {
+            return redirect('');
+        }
+
+        if ($product->img != 'noimage.png') {
+            File::delete('images/' . $product->img);
+        }
+
+        $product->delete();
+        return redirect('products')->with('message_success', 'Product Deleted.');
     }
 }

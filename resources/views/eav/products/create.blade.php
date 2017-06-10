@@ -70,7 +70,7 @@
 
             <div class="form-group">
                 <div class="col-xs-12">
-                    <select id="select_category" name="category" class="form-control input-lg" required>
+                    <select id="select_category" name="category_id" class="form-control input-lg" required>
                         <option value="">Select Category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
