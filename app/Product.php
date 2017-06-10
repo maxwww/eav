@@ -11,6 +11,7 @@ class Product extends Model
         's_description',
         'description',
         'status',
+        'img',
         'count',
         'price',
         'params',

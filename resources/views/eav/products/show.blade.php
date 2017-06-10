@@ -41,6 +41,9 @@
                 <td><strong>Quantity:</strong></td>
                 <td>{{ $product->quantity }}</td>
             </tr>
+            <td><strong>Image:</strong></td>
+            <td><img src="/images/{{ $product->img }}" alt="{{ $product->name }}" class="img-thumbnail"></td>
+            </tr>
             @if(count($attributes) > 0)
                 @foreach($attributes as $attribute)
                     <tr>
@@ -57,7 +60,9 @@
                             @elseif($attribute->type == "text" or $attribute->type == "textarea")
                                 {!! nl2br(htmlspecialchars($params[$attribute->id])) !!}
                             @else
-                                {{ (json_decode($attribute->options, true))[$params[$attribute->id]] }}
+                                @if(array_key_exists($params[$attribute->id], json_decode($attribute->options, true)))
+                                    {{ (json_decode($attribute->options, true))[$params[$attribute->id]] }}
+                                @endif
                             @endif
                         </td>
                     </tr>

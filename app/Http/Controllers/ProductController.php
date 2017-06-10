@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\Attribute;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request as MRequest;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -60,5 +63,51 @@ class ProductController extends Controller
             'attributes',
             'active',
         ]));
+    }
+
+    public function create()
+    {
+        $active = 'products';
+        $categories = Category::all();
+        return view('eav.products.create', compact([
+            'active',
+            'categories',
+        ]));
+    }
+
+    public function store()
+    {
+
+        $file = Request::file('img');
+        $all = Request::all();
+
+        dd(json_encode($all['params'], true));
+
+        $input = array_merge(Request::except('params', '_token'), compact('attributes'));
+
+        $rules = [
+            'name' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+
+        $messages = [];
+
+        $validator = Validator::make($input, $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->with('message_failed', 'Not Saved.')->withInput()->withErrors($validator);
+        }
+
+        try {
+            Category::where('id', (int)$id)
+                ->update($input);
+        } catch (QueryException $exception) {
+            return redirect()->back()->with('message_failed', 'Not Saved -> Please write to admin.')->withInput();
+        }
+
+
+        return redirect()->back()->with('message_success', 'Category Saved.');
+
+
+        dd(25);
     }
 }

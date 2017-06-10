@@ -41,6 +41,22 @@ jQuery(document).ready(function($) {
 
     });
 
+    $(document).on('change', '#select_category', function() {
+
+        var catID = $('#select_category').val();
+
+        if (catID != "") {
+            var token = $('input[name=_token]').val();
+            catID = parseInt(catID);
+            $.ajax({type: "POST", url: "/categories/attributes/" + catID, data: {_token: token}, success: function(result){
+                $("#params").html(result.html);
+            }});
+        } else {
+            $("#params").html("");
+        }
+
+    });
+
     $(document).on('click', '[data-option-remove]', function() {
 
         $(this).closest('tr').remove();

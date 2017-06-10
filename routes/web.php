@@ -17,3 +17,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('products/{id}/delete', 'ProductController@destroy');
     Route::post('products/{id}/update', 'ProductController@update');
 });
+
+Route::post('categories/attributes/{id}', 'CategoryController@getAttributes');

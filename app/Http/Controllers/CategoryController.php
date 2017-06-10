@@ -154,4 +154,23 @@ class CategoryController extends Controller
 
         return redirect()->back()->with('message_success', 'Category Saved.');
     }
+
+    public function getAttributes($id)
+    {
+        $category = Category::find((int)$id);
+
+        $html = 'Not found!';
+        $status = 'failed';
+        if ($category) {
+            $attributes = Attribute::whereIn('id', json_decode($category->attributes, true))->get();
+            $html = view('eav.categories.attributes', compact(['attributes']))->render();
+            $status = "ok";
+        }
+
+
+        return response()->json([
+            'status' => $status,
+            'html' => $html
+        ]);
+    }
 }

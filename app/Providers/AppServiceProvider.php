@@ -15,12 +15,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        DB::listen(function ($query) {
-
-            dump($query->sql);
-            //dump($query->bindings);
-
-        });
+//        DB::listen(function ($query) {
+//
+//            dump($query->sql);
+//            //dump($query->bindings);
+//
+//        });
     }
 
     /**
