@@ -64,6 +64,8 @@
 
         </div>
 
+        @yield('auth')
+
     </div>
 
 </div>

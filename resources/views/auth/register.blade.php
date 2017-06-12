@@ -1,6 +1,6 @@
 @extends('eav.layouts.main')
 
-@section('content')
+@section('auth')
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">Register</div>
