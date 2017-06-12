@@ -83,12 +83,12 @@ class CategoryController extends Controller
 
         $validator = Validator::make($input, $rules, $messages);
         if ($validator->fails()) {
-            return redirect('categories/create')->withErrors($validator)->withInput()->with('message_failed', 'Not Saved.');
+            return redirect('/admin/categories/create')->withErrors($validator)->withInput()->with('message_failed', 'Not Saved.');
         }
 
         Category::create($input);
 
-        return redirect('categories')->with('message_success', 'Category Saved.');
+        return redirect('/admin/categories')->with('message_success', 'Category Saved.');
     }
 
     public function destroy($id)
@@ -99,7 +99,7 @@ class CategoryController extends Controller
             return redirect('');
         }
         $category->delete();
-        return redirect('categories')->with('message_success', 'Category Deleted.');
+        return redirect('/admin/categories')->with('message_success', 'Category Deleted.');
     }
 
     public function edit($id)

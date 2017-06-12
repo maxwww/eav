@@ -4,9 +4,9 @@
     <div>
         <p class="lead">Make your choice</p>
         <div class="list-group">
-            <a href="{{ URL::to('products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
-            <a href="{{ URL::to('categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
-            <a href="{{ URL::to('attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
+            <a href="{{ URL::to('/admin/products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
+            <a href="{{ URL::to('/admin/categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
+            <a href="{{ URL::to('/admin/attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
         </div>
     </div>
 @stop
@@ -19,7 +19,7 @@
         <table class="table">
             <tr>
                 <td><strong>Category:</strong></td>
-                <td><a href="/categories/{{ $product->category->id }}">{{ $product->category->name }}</a></td>
+                <td><a href="/admin/categories/{{ $product->category->id }}">{{ $product->category->name }}</a></td>
             </tr>
             <tr>
                 <td><strong>Description:</strong></td>
@@ -75,11 +75,11 @@
                href="{{ URL::previous() }}" title="Back"><i
                         class="fa fa-backward"></i></a>
             <a class="btn btn-primary tip"
-               href="{{ URL::to('products/' . $product->id . '/edit') }}"
+               href="{{ URL::to('/admin/products/' . $product->id . '/edit') }}"
                title="Edit"><i class="fa fa-edit"></i></a>
             <a class="btn btn-danger tip" data-toggle="modal"
                data-target="modal-confirm"
-               href="{{ URL::to('products/' . $product->id . '/delete') }}"
+               href="{{ URL::to('/admin/products/' . $product->id . '/delete') }}"
                title="Delete"><i class="fa fa-trash-o"></i></a>
         </div>
         <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="model-confirm-label"
@@ -106,6 +106,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{ URL::to('js/scripts.js') }}"></script>
-    <script src="{{ URL::to('js/attributes.js') }}"></script>
+    <script src="{{ URL::to('/js/scripts.js') }}"></script>
+    <script src="{{ URL::to('/js/attributes.js') }}"></script>
 @stop

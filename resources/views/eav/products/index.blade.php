@@ -4,9 +4,9 @@
     <div>
         <p class="lead">Make your choice</p>
         <div class="list-group">
-            <a href="{{ URL::to('products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
-            <a href="{{ URL::to('categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
-            <a href="{{ URL::to('attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
+            <a href="{{ URL::to('/admin/products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
+            <a href="{{ URL::to('/admin/categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
+            <a href="{{ URL::to('/admin/attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
         </div>
     </div>
 @stop
@@ -15,7 +15,7 @@
         <div class="page-header">
             <h1>Products</h1>
             <p class="lead">Create products!</p>
-            <p><a class="btn btn-lg btn-success" href="{{ URL::to('products/create') }}" role="button">Add
+            <p><a class="btn btn-lg btn-success" href="{{ URL::to('/admin/products/create') }}" role="button">Add
                     Product</a></p>
         </div>
         <div class="row">
@@ -51,15 +51,15 @@
                                                         <td>
                                                             <div class="pull-right">
                                                                 <a class="btn btn-primary tip"
-                                                                   href="{{ URL::to('products/' . $product->id) }}"
+                                                                   href="{{ URL::to('/admin/products/' . $product->id) }}"
                                                                    title="View"><i
                                                                             class="fa fa-eye"></i></a>
                                                                 <a class="btn btn-primary tip"
-                                                                   href="{{ URL::to('products/' . $product->id . '/edit') }}"
+                                                                   href="{{ URL::to('/admin/products/' . $product->id . '/edit') }}"
                                                                    title="Edit"><i class="fa fa-edit"></i></a>
                                                                 <a class="btn btn-danger tip" data-toggle="modal"
                                                                    data-target="modal-confirm"
-                                                                   href="{{ URL::to('products/' . $product->id . '/delete') }}"
+                                                                   href="{{ URL::to('/admin/products/' . $product->id . '/delete') }}"
                                                                    title="Delete"><i class="fa fa-trash-o"></i></a>
                                                             </div>
                                                         </td>
@@ -105,6 +105,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{ URL::to('js/scripts.js') }}"></script>
-    <script src="{{ URL::to('js/attributes.js') }}"></script>
+    <script src="{{ URL::to('/js/scripts.js') }}"></script>
+    <script src="{{ URL::to('/js/attributes.js') }}"></script>
 @stop

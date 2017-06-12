@@ -123,7 +123,7 @@ class ProductController extends Controller
             return redirect()->back()->with('message_failed', 'Not Saved -> Please write to admin.')->withInput();
         }
 
-        return redirect('products')->with('message_success', 'Product Saved.');
+        return redirect('/admin/products')->with('message_success', 'Product Saved.');
 
     }
 
@@ -140,7 +140,7 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return redirect('products')->with('message_success', 'Product Deleted.');
+        return redirect('/admin/products')->with('message_success', 'Product Deleted.');
     }
 
     public function edit($id)
@@ -221,49 +221,5 @@ class ProductController extends Controller
         }
 
         return redirect()->back()->with('message_success', 'Product Saved.');
-
-
-
-
-//        ------------------------------
-
-
-
-
-
-
-        $params = Request::get('params');
-        $all = Request::all();
-
-        dd($all);
-        $attributes = [];
-        if ($options != null) {
-            foreach ($options as $key => $value) {
-                $attributes[] = $key;
-            }
-        }
-        $attributes = json_encode($attributes, true);
-        $input = array_merge(Request::except('options', '_token'), compact('attributes'));
-
-        $rules = [
-            'name' => 'required',
-        ];
-
-        $messages = [];
-
-        $validator = Validator::make($input, $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()->with('message_failed', 'Not Saved.')->withInput()->withErrors($validator);
-        }
-
-        try {
-            Category::where('id', (int)$id)
-                ->update($input);
-        } catch (QueryException $exception) {
-            return redirect()->back()->with('message_failed', 'Not Saved -> Please write to admin.')->withInput();
-        }
-
-
-        return redirect()->back()->with('message_success', 'Category Saved.');
     }
 }

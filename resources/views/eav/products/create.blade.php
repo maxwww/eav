@@ -4,9 +4,9 @@
     <div>
         <p class="lead">Make your choice</p>
         <div class="list-group">
-            <a href="{{ URL::to('products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
-            <a href="{{ URL::to('categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
-            <a href="{{ URL::to('attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
+            <a href="{{ URL::to('/admin/products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
+            <a href="{{ URL::to('/admin/categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
+            <a href="{{ URL::to('/admin/attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
         </div>
     </div>
 @stop
@@ -20,7 +20,7 @@
         <br/>
 
         <div class="form-horizontal">
-            {!! Form::open(array('url' => '/products', 'files' => true, 'enctype' => 'multipart/form-data')) !!}
+            {!! Form::open(array('url' => '/admin/products', 'files' => true, 'enctype' => 'multipart/form-data')) !!}
 
             <div class="form-group">
                 <div class="col-xs-12">
@@ -100,6 +100,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{ URL::to('js/scripts.js') }}"></script>
-    <script src="{{ URL::to('js/attributes.js') }}"></script>
+    <script src="{{ URL::to('/js/scripts.js') }}"></script>
+    <script src="{{ URL::to('/js/attributes.js') }}"></script>
 @stop

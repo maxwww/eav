@@ -54,12 +54,12 @@ class AttributeController extends Controller
 
         $validator = Validator::make($input, $rules, $messages);
         if ($validator->fails()) {
-            return redirect('attributes/create')->withErrors($validator)->withInput()->with('message_failed', 'Not Saved.');
+            return redirect('/admin/attributes/create')->withErrors($validator)->withInput()->with('message_failed', 'Not Saved.');
         }
 
         Attribute::create($input);
 
-        return redirect('attributes')->with('message_success', 'Attribute Saved.');
+        return redirect('/admin/attributes')->with('message_success', 'Attribute Saved.');
     }
 
     public function show($id)
@@ -93,7 +93,7 @@ class AttributeController extends Controller
             return redirect('');
         }
         $attribute->delete();
-        return redirect('attributes')->with('message_success', 'Attribute Deleted.');
+        return redirect('/admin/attributes')->with('message_success', 'Attribute Deleted.');
     }
 
     public function edit($id)

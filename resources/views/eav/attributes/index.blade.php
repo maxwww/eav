@@ -4,9 +4,9 @@
     <div>
         <p class="lead">Make your choice</p>
         <div class="list-group">
-            <a href="{{ URL::to('products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
-            <a href="{{ URL::to('categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
-            <a href="{{ URL::to('attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
+            <a href="{{ URL::to('/admin/products') }}" class="list-group-item {{ $active == 'products' ? 'active' : '' }}">Products</a>
+            <a href="{{ URL::to('/admin/categories') }}" class="list-group-item {{ $active == 'categories' ? 'active' : '' }}">Categories</a>
+            <a href="{{ URL::to('/admin/attributes') }}" class="list-group-item {{ $active == 'attributes' ? 'active' : '' }}">Attributes</a>
         </div>
     </div>
 @stop
@@ -16,7 +16,7 @@
         <div class="page-header">
             <h1>Attributes</h1>
             <p class="lead">Create attributes and assign them to any object!</p>
-            <p><a class="btn btn-lg btn-success" href="{{ URL::to('attributes/create') }}" role="button">Add
+            <p><a class="btn btn-lg btn-success" href="{{ URL::to('/admin/attributes/create') }}" role="button">Add
                     Attribute</a></p>
         </div>
 
@@ -43,14 +43,14 @@
                                         <td>
                                             <div class="pull-right">
                                                 <a class="btn btn-primary tip"
-                                                   href="{{ URL::to('attributes/' . $attribute->id) }}" title="View"><i
+                                                   href="{{ URL::to('/admin/attributes/' . $attribute->id) }}" title="View"><i
                                                             class="fa fa-eye"></i></a>
                                                 <a class="btn btn-primary tip"
-                                                   href="{{ URL::to('attributes/' . $attribute->id . '/edit') }}"
+                                                   href="{{ URL::to('/admin/attributes/' . $attribute->id . '/edit') }}"
                                                    title="Edit"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-danger tip" data-toggle="modal"
                                                    data-target="modal-confirm"
-                                                   href="{{ URL::to('attributes/' . $attribute->id . '/delete') }}"
+                                                   href="{{ URL::to('/admin/attributes/' . $attribute->id . '/delete') }}"
                                                    title="Delete"><i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
@@ -95,6 +95,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{ URL::to('js/scripts.js') }}"></script>
-    <script src="{{ URL::to('js/attributes.js') }}"></script>
+    <script src="{{ URL::to('/js/scripts.js') }}"></script>
+    <script src="{{ URL::to('/js/attributes.js') }}"></script>
 @stop
