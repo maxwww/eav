@@ -148,8 +148,3 @@
     </div>
 
 @stop
-
-@section('scripts')
-    <script src="{{ URL::to('/js/scripts.js') }}"></script>
-    <script src="{{ URL::to('/js/attributes.js') }}"></script>
-@stop

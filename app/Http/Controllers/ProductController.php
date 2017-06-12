@@ -222,4 +222,60 @@ class ProductController extends Controller
 
         return redirect()->back()->with('message_success', 'Product Saved.');
     }
+
+    public function showSingleProduct($id)
+    {
+        $product = Product::find((int)$id);
+        $product->load('category');
+
+        if (!$product) {
+            return redirect('');
+        }
+
+        $params = [];
+        $attributes = [];
+
+        if ($product->params != "" && $product->params != "[]") {
+
+            $params = json_decode($product->params, true);
+            $attributes_in_category = json_decode($product->category->attributes, true);
+            foreach ($params as $key => $value) {
+                if (!in_array($key, $attributes_in_category)) {
+                    unset($params[$key]);
+                }
+            }
+
+            if (count($params) > 0) {
+                $attributes = Attribute::whereIn('id', array_keys($params))->get();
+            }
+        }
+
+        $categories = Category::all();
+        $current_category = $product->category->name;
+        return view('eav.products.showSingle', compact([
+            'product',
+            'params',
+            'attributes',
+            'categories',
+            'current_category',
+        ]));
+    }
+
+    public function showFromCategory($id)
+    {
+        $category = Category::find((int)$id);
+        $categories = Category::all();
+
+        if (!$category) {
+            return redirect('');
+        }
+
+        $products = Product::where('category_id', '=', $category->id)->paginate(6);
+        $current_category = $category->name;
+        return view('eav.productsFromCategory', compact([
+            'categories',
+            'current_category',
+            'products'
+        ]));
+    }
 }

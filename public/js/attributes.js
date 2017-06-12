@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
         if (catID != "") {
             var token = $('input[name=_token]').val();
             catID = parseInt(catID);
-            $.ajax({type: "POST", url: "/categories/attributes/" + catID, data: {_token: token}, success: function(result){
+            $.ajax({type: "POST", url: "/admin/categories/attributes/" + catID, data: {_token: token}, success: function(result){
                 $("#params").html(result.html);
             }});
         } else {
@@ -74,6 +74,20 @@ jQuery(document).ready(function($) {
             $('[data-options-empty]').removeClass('hide');
         }
 
+    });
+
+    $(document).on('click', '[data-add-to-cart]', function(event) {
+
+        var productiD = $( this ).data().addToCart;
+
+        $(".overlay").show();
+
+        setTimeout(function(){
+            $.ajax({type: "GET", url: "/api/addtocart/" + productiD, success: function(result){
+                $("#cart").html(result.html);
+            }});
+            $(".overlay").hide();
+        }, 2000);
     });
 
 });

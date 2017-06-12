@@ -9,13 +9,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    <img class="slide-image" src="{{ URL::to('/images/slide1.png') }}" alt="">
                 </div>
                 <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    <img class="slide-image" src="{{ URL::to('/images/slide2.png') }}" alt="">
                 </div>
                 <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                    <img class="slide-image" src="{{ URL::to('/images/slide3.png') }}" alt="">
                 </div>
             </div>
             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

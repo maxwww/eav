@@ -18,7 +18,7 @@
                     <a href="{{ URL::to('') }}">Home</a>
                 </li>
                 <li>
-                    <a href="/cart">Cart</a>
+                    <a href="{{ URL::to('/cart') }}">Cart</a>
                 </li>
                 @if (!Auth::guest())
                     <li><a href="{{ URL::to('/admin/orders') }}">Orders</a></li>
@@ -54,6 +54,12 @@
                         </ul>
                     </li>
                 @endif
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="{{ URL::to('/cart') }}" class="btn btn-success btn-lg add-cart-large"><span class="glyphicon glyphicon-shopping-cart"></span> <span
+                                id="cart" class="items">{{ session('cart.count') != "" ? session('cart.count') : 0 }}</span></a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

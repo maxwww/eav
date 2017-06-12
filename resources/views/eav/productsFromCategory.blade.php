@@ -24,6 +24,9 @@
             </div>
         </div>
     @endforeach
+    <div class="col-lg-12">
+        {{ $products->render() }}
+    </div>
 
     <div class="overlay">
         <div class="loading">
