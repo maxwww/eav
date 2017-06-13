@@ -24,12 +24,6 @@
             </div>
         </div>
     @endforeach
-
-    <div class="overlay">
-        <div class="loading">
-            <img class="loading-image" src="/images/loading.gif" alt="Loading..." />
-        </div>
-    </div>
 @stop
 
 @section('scripts')

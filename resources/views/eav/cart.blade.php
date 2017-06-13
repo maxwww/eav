@@ -7,7 +7,7 @@
 
 @section('content')
     {!! Form::open(array('url' => '/admin/categories')) !!}
-    <div class="col-sm-12 col-lg-12 col-md-12">
+    <div id="bigcart" class="col-sm-12 col-lg-12 col-md-12">
         <table class="table">
             <tr>
                 <td>
@@ -30,7 +30,7 @@
                     </td>
                     <td>{{ $item['price'] }}</td>
                     <td>{{ $item['count'] }}</td>
-                    <td><button type="button" class="btn btn-danger">
+                    <td><button data-remove="{{ $id }}" type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                         </button></td>
                 </tr>
@@ -41,7 +41,7 @@
                 <td><a href="{{ URL::to('/cart/checkout') }}" type="button" class="btn btn-success">
                         <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>Buy
                     </a></td>
-                <td><button type="button" class="btn btn-danger">
+                <td><button data-remove="all" type="button" class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>All
                     </button></td>
             </tr>
@@ -49,3 +49,8 @@
     </div>
     {!! Form::close() !!}
 @endsection
+
+@section('scripts')
+    <script src="{{ URL::to('/js/scripts.js') }}"></script>
+    <script src="{{ URL::to('/js/attributes.js') }}"></script>
+@stop

@@ -87,7 +87,22 @@ jQuery(document).ready(function($) {
                 $("#cart").html(result.html);
             }});
             $(".overlay").hide();
-        }, 2000);
+        }, 1000);
+    });
+
+    $(document).on('click', '[data-remove]', function(event) {
+
+        var productiD = $( this ).data().remove;
+
+        $(".overlay").show();
+
+        setTimeout(function(){
+            $.ajax({type: "GET", url: "/api/removefromcart/" + productiD, success: function(result){
+                $("#bigcart").html(result.html);
+                $("#cart").html(result.allCount);
+            }});
+            $(".overlay").hide();
+        }, 1000);
     });
 
 });

@@ -4,6 +4,8 @@ Route::get('/', ['uses' => 'IndexController@show', 'as' => 'home']);
 Route::get('/products/{id}', ['uses' => 'ProductController@showSingleProduct']);
 Route::get('/categories/{id}', ['uses' => 'ProductController@showFromCategory']);
 Route::get('/cart', ['uses' => 'CartController@show']);
+Route::get('/cart/checkout', ['uses' => 'CartController@checkout']);
+Route::post('/cart/submit', ['uses' => 'CartController@submit']);
 
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'admin'], function () {
@@ -36,4 +38,5 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['middleware' => ['web'], 'prefix' => 'api'], function () {
     Route::get('/addtocart/{id}', 'CartController@addProductToCart');
+    Route::get('/removefromcart/{id}', 'CartController@removeFromCart');
 });
