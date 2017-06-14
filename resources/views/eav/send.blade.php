@@ -1,7 +1,7 @@
 <html>
 <head></head>
 <body style="background: black; color: white">
-<h1>New Order form {{ $input['name'] }}</h1>
+<h1>New Order from {{ $input['name'] }}</h1>
 <p>Mail: {{ $input['email'] }}</p>
 <p>Phone: {{ $input['phone'] }}</p>
 <p>Items</p>
